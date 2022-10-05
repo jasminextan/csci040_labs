@@ -83,39 +83,6 @@ def triangular_number(n):
         x += -1
     return z
 
-
-
-
-
-def sum_of_primes(n):
-    '''
-    Return the sum of all prime numbers less than or equal to n.
-
-    HINT:
-    In the previous lab, you defined a function is_prime,
-    and I've provided my implementation of this function below.
-    To solve sum_of_primes, use a for loop with an if statement;
-    the condition on the if statement will call the is_prime function.
-
-    >>> sum_of_primes(0)
-    0
-    >>> sum_of_primes(1)
-    0
-    >>> sum_of_primes(2)
-    2
-    >>> sum_of_primes(3)
-    5
-    >>> sum_of_primes(4)
-    5
-    >>> sum_of_primes(5)
-    10
-    >>> sum_of_primes(6)
-    10
-    >>> sum_of_primes(7)
-    17
-    '''
-
-
 def is_prime(n):
     '''
     Return True if n is prime, and False otherwise.
@@ -147,6 +114,43 @@ def is_prime(n):
             return False
     return True
 
+def sum_of_primes(n):
+    '''
+    Return the sum of all prime numbers less than or equal to n.
+
+    HINT:
+    In the previous lab, you defined a function is_prime,
+    and I've provided my implementation of this function below.
+    To solve sum_of_primes, use a for loop with an if statement;
+    the condition on the if statement will call the is_prime function.
+
+    >>> sum_of_primes(0)
+    0
+    >>> sum_of_primes(1)
+    0
+    >>> sum_of_primes(2)
+    2
+    >>> sum_of_primes(3)
+    5
+    >>> sum_of_primes(4)
+    5
+    >>> sum_of_primes(5)
+    10
+    >>> sum_of_primes(6)
+    10
+    >>> sum_of_primes(7)
+    17
+    '''
+    x = 0
+    y = n
+    nums = []
+    while y > 0:
+        nums.append(y)
+        y += -1
+    for i in nums:
+        if is_prime(i) == True:
+            x += i
+    return x
 
 ################################################################################
 # PART II:
@@ -169,6 +173,11 @@ def last_element(xs):
     1
     >>> last_element([])
     '''
+    if len(xs) == 0:
+        return
+    x = len(xs) -1
+    y = xs [x]
+    return y
 
 
 def last_element_list(xs):
@@ -187,6 +196,14 @@ def last_element_list(xs):
     >>> last_element_list([])
     []
     '''
+    z = []
+    x= 0
+    if len(xs) == 0:
+        return z
+    while x < len(xs) - 1:
+        del xs[x]
+    return xs
+
 
 
 def first_three(xs):
@@ -207,7 +224,8 @@ def first_three(xs):
     >>> first_three([])
     []
     '''
-
+    a = slice(0,3)
+    return xs[a]
 
 def last_three(xs):
     '''
@@ -224,6 +242,12 @@ def last_three(xs):
     >>> last_three([0,1])
     [0, 1]
     '''
+    if len(xs) <= 3:
+        return xs
+    b = len(xs) - 3
+    c = len(xs)
+    a = slice(b,c)
+    return xs[a]
 
 
 def filter_even(xs):
@@ -242,6 +266,11 @@ def filter_even(xs):
     >>> filter_even([20,13,4,16,8,19,10])
     [13, 19]
     '''
+    y=[]
+    for i in range(len(xs)):
+        if xs[i] % 2 != 0:
+            y.append(xs[i])
+    return y
 
 
 def bigger_than_10(xs):
@@ -257,6 +286,11 @@ def bigger_than_10(xs):
     >>> bigger_than_10([4,5,6,11])
     1
     '''
+    y=0
+    for i in range(len(xs)):
+        if xs[i] > 10:
+            y += 1
+    return y
 
 
 def second_largest(xs):
@@ -276,7 +310,13 @@ def second_largest(xs):
     >>> second_largest([10])
     >>> second_largest([])
     '''
-
+    y = 0
+    if len(xs) < 2:
+        return None
+    xs.sort(reverse=True)
+    y = xs[1]
+    return y
+    
 
 def has_index_at_value(xs):
     '''
@@ -309,6 +349,10 @@ def has_index_at_value(xs):
     >>> has_index_at_value([2, 9, 5, 4, 19, 4, 4, 4, 4, 4])
     False
     '''
+    for i in range(len(xs)):
+        if i == xs[i]:
+            return True
+    return False
 
 
 def flatten(xss):
@@ -324,6 +368,11 @@ def flatten(xss):
     >>> flatten([[10]])
     [10]
     '''
+    fs = []
+    for xs in xss:
+        for i in xs:
+            fs.append(i)
+    return fs
 
 
 def filter_flatten(xss):
@@ -349,6 +398,13 @@ def filter_flatten(xss):
     >>> filter_flatten([[10]])
     [10]
     '''
+    fs = []
+    y = 0
+    for xs in xss:
+        x = xs[y]
+        fs.append(x)
+        y += 1
+    return fs
 
 
 ################################################################################
@@ -404,6 +460,7 @@ def get_number_of_students_in_class(d):
     >>> get_number_of_students_in_class(economics_grades)
     6
     '''
+    return len(d)
 
 
 def highest_grade(d):
@@ -417,6 +474,9 @@ def highest_grade(d):
     >>> highest_grade(economics_grades)
     95
     '''
+    grades = d.values()
+    return max(grades)
+
 
 
 def student_with_highest_grade(d):
@@ -430,7 +490,11 @@ def student_with_highest_grade(d):
     >>> student_with_highest_grade(economics_grades)
     'pierre-joseph proudhon'
     '''
-
+    grades = d.values()
+    m = max(grades)
+    for a in d:
+        if d[a] == m:
+            return a
 
 def students_getting_an_a(d):
     '''
@@ -447,6 +511,12 @@ def students_getting_an_a(d):
     >>> students_getting_an_a(economics_grades)
     ['alan greenspan', 'karl marx', 'pierre-joseph proudhon']
     '''
+    l = []
+    for a in d:
+        if d[a] >= 90:
+            l.append(a)
+    l.sort()
+    return l
 
 
 ################################################################################
@@ -537,3 +607,16 @@ def most_retweeted(tweets):
     >>> most_retweeted(trump_tweets[:5])
     '947592785519173637'
     '''
+    twt = []
+    rtwt = []
+    for a in tweets:
+        rtwt.append(a["retweet_count"])
+        twt.append(a["id_str"])
+    m = max(rtwt)
+    d = dict.fromkeys(twt)
+    for c in twt:
+        z = twt.index(c)
+        d[c] = rtwt[z]
+    for a in d:
+        if d[a] == m:
+            return a
