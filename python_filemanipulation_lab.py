@@ -46,6 +46,28 @@ def rot13(text):
     You know something is a capital letter because it is >= 'A' and <= 'Z';
     similarly, you know something is a lowercase letter because it is >= 'a' and <= 'z'.
     '''
+    textlist = []
+    texttwo = ''
+    for x in text:
+        y = ord(x)
+        textlist.append(y)
+    for i in range (len(textlist)):
+        if textlist[i] > 96 and textlist[i] < 110:
+            textlist[i] = textlist[i] + 13
+        elif textlist[i] > 109 and textlist [i] < 123:
+            textlist[i] = textlist [i] - 13
+        elif textlist [i] > 64 and textlist[i] < 78:
+            textlist[i] = textlist[i] + 13
+        elif textlist [i] > 77 and textlist [i] < 91:
+            textlist[i] = textlist [i] - 13
+    for x in textlist:
+        z = chr(x)
+        texttwo+=str(z)
+    return texttwo
+    
+        
+
+
 
 
 def greekify(text):
@@ -78,8 +100,22 @@ def greekify(text):
     If the character is not in either string,
     then just add that character to the accumulator.
     '''
-    greek_alphabet = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
-    latin_alphabet = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+    greek = 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω'
+    latin = 'AaBbGgDdEeZzHhJjIiKkLlMmNnXxOoPpRrSssTtUuFfQqYyWw'
+    textthree = ''
+    for x in text:
+        if x in latin:
+            z = latin.index(x)
+            a = greek[z]
+            textthree += a 
+        elif x in greek:
+            z = greek.index(x)
+            a = latin[z]
+            textthree += a  
+        else:
+            textthree += x
+    return textthree
+
 
 
 def character_equality(x, y):
@@ -108,6 +144,11 @@ def character_equality(x, y):
     >>> character_equality('lập trình máy tính là tốt nhất !!!', 'lập trình máy tính là tốt nhất !!!')
     False
     '''
+    if x == y:
+        return True
+    else:
+        return False
+        
 
 
 def grapheme_equality(x, y):
@@ -131,4 +172,9 @@ def grapheme_equality(x, y):
     False
     >>> grapheme_equality('lập trình máy tính là tốt nhất !!!', 'lập trình máy tính là tốt nhất !!!')
     True
-    '''
+        '''
+    import unicodedata
+    if unicodedata.normalize('NFD', y) == unicodedata.normalize('NFD', x):
+        return True
+    else:
+        return False
