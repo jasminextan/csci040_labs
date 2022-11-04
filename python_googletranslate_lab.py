@@ -19,3 +19,12 @@
 # Now, to complete the assignment, all you have to do is loop over the list above, calling the translate function with target= each of the supported languages.
 
 from deep_translator import GoogleTranslator
+GoogleTranslator.get_supported_languages()
+s = []
+i = 0
+x=0
+langs_list = GoogleTranslator.get_supported_languages()
+while i < len(langs_list):
+    s += GoogleTranslator(source='en', target=langs_list[i]).translate("python is awesome")
+    i = i+1
+print(s)
