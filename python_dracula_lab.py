@@ -18,4 +18,3 @@ Saves the resulting story to a file called izbicki.html.
 Note that your final saved file should still have all the html code that makes it a valid webpage.
 Upload both your dracula.py code and izbicki.html output file to Sakai.
 '''
-
