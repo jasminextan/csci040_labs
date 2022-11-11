@@ -18,3 +18,20 @@ Saves the resulting story to a file called izbicki.html.
 Note that your final saved file should still have all the html code that makes it a valid webpage.
 Upload both your dracula.py code and izbicki.html output file to Sakai.
 '''
+
+with open('dracula.html', encoding='utf8') as f:
+    e = f.read()
+
+final_text = e.replace('dracula', '<strong>izbicki</strong>')
+final_text = final_text.replace('Dracula', '<strong>Izbicki</strong>')
+final_text = final_text.replace('DRACULA', '<strong>IZBICKI</strong>')
+final_text = final_text.replace('D&nbsp;R&nbsp;A&nbsp;C&nbsp;U&nbsp;L&nbsp;A', '<strong>I&nbsp;Z&nbsp;B&nbsp;I&nbsp;C&nbsp;K&nbsp;I</strong>')
+
+
+final_text = final_text.replace('count', 'professor')
+final_text = final_text.replace('Count', 'Professor')
+final_text = final_text.replace('Bram', 'Jasmine')
+final_text = final_text.replace('Stoker', 'Tan')
+
+with open('izbicki.html', 'w', encoding='utf8') as f:
+    f.write(final_text)
