@@ -14,12 +14,12 @@ According to Snowden, the NSA is capable of guessing up to 1 trillion passwords 
 
 from zipfile import ZipFile
 
-passextract = open('Ashley-Madison.txt').read()
+passextract = open('password_cracking_lab\Ashley-Madison.txt').read()
 passwords = passextract.split()
 
 for i in passwords:
     try:
-        with ZipFile('whitehouse_secrets.zip') as zf:
+        with ZipFile('password_cracking_lab\whitehouse_secrets.zip') as zf:
             zf.extractall(pwd=i.encode('ascii'))
             print("The password is" + i)
         break
