@@ -1,4 +1,5 @@
 import praw
+
 reddit = praw.Reddit('backpagebot')
 
 import time
