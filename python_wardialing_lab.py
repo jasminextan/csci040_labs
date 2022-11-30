@@ -62,8 +62,8 @@ def is_server_at_hostname(hostname):
     # Review the `requests.get` documentation to see how to speed up these calls and make your function faster.
     '''
     try:
-        x = requests.get('http://' + hostname)
-        return x.status_code == 200
+        r = requests.get('http://' + hostname)
+        return r.status_code == 200
     except:
         return False
 
