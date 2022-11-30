@@ -62,11 +62,10 @@ def is_server_at_hostname(hostname):
     # Review the `requests.get` documentation to see how to speed up these calls and make your function faster.
     '''
     try:
-        r = requests.get('http://' + hostname)
-        return r.status_code == 200
+        x = requests.get('http://' + hostname)
+        return x.status_code == 200
     except:
         return False
-
 
 def increment_ip(ip):
     '''
@@ -90,21 +89,20 @@ def increment_ip(ip):
     '0.0.0.0'
     '''
     ip = ip.split('.')
-    numbers = [int(i) for i in ip]
-    numbers[3] += 1
-    if numbers[3] == 256:
-        numbers[3] = 0
-        numbers[2] += 1
-        if numbers[2] == 256:
-            numbers[2] = 0
-            numbers[1] += 1
-            if numbers[1] == 256:
-                numbers[1] = 0
-                numbers[0] += 1
-                if numbers[0] == 256:
-                    numbers[0] = 0
-    return '.'.join([str(i) for i in numbers])
-
+    number = [int(i) for i in ip]
+    number[3] += 1
+    if number[3] == 256:
+        number[3] = 0
+        number[2] += 1
+        if number[2] == 256:
+            number[2] = 0
+            number[1] += 1
+            if number[1] == 256:
+                number[1] = 0
+                number[0] += 1
+                if number[0] == 256:
+                    number[0] = 0
+    return '.'.join([str(i) for i in number])
 
 def enumerate_ips(start_ip, n):
     '''
@@ -130,13 +128,11 @@ def enumerate_ips(start_ip, n):
     >>> len(list(enumerate_ips('8.8.8.8', 100000)))
     100000
     '''
-
     acc = []
     for i in range(n):
         acc.append(start_ip)
         start_ip = increment_ip(start_ip)
     return acc
-
 
 ########################################
 # FIXME 1:
@@ -145,9 +141,9 @@ def enumerate_ips(start_ip, n):
 # You should use your `enumerate_ips` function that you created above.
 ########################################
 dprk_ips = []
+dprk_ips = enumerate_ips('175.45.176.0', 1024)
 
-
-########################################
+#######################################
 # FIXME 2:
 # Filter the `dprk_ips` list you created above so that it contains only the IPs that have a web server.
 # Use the accumulator pattern and your `is_server_at_hostname` function.
@@ -171,10 +167,10 @@ dprk_ips = []
 # you'll learn how to write this parallel code.
 ########################################
 dprk_ips_with_servers = []
-i=0
+count=0
 for ip in dprk_ips:
-    i += 1
-    print('Scanning IP: ' + ip + ' ' + 'NUMBER:', i)
+    count+=1
+    print('Scanning IP: ' + ip + ' ' + 'NUMBER:', count)
     if is_server_at_hostname(ip):
         dprk_ips_with_servers.append(ip)
 
