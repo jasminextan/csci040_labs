@@ -1,7 +1,4 @@
 import requests
-import socket 
-import logging
-import ipaddress
 
 ########################################
 # FIXME 0:
@@ -64,14 +61,12 @@ def is_server_at_hostname(hostname):
     # Your test cases may take a LONG time to run when they can't connect to a webserver.
     # Review the `requests.get` documentation to see how to speed up these calls and make your function faster.
     '''
-    link = "http://"+hostname
+
     try:
-        r = requests.get(link, timeout = 5)
-        print(r)
-        if r.status_code==200:
-            return True
+        r = requests.get('http://' + hostname)
+        return r.status_code == 200
     except:
-        return False 
+        return False
 
 
 def increment_ip(ip):
@@ -95,12 +90,21 @@ def increment_ip(ip):
     >>> increment_ip('255.255.255.255')
     '0.0.0.0'
     '''
-    if ip=='255.255.255.255':
-        return '0.0.0.0'
-    else:
-        new_ip=ipaddress.ip_address(ip)+1
-        new_ip=str(new_ip)
-        return new_ip
+    ip = ip.split('.')
+    nums = [int(i) for i in ip]
+    nums[3] += 1
+    if nums[3] == 256:
+        nums[3] = 0
+        nums[2] += 1
+        if nums[2] == 256:
+            nums[2] = 0
+            nums[1] += 1
+            if nums[1] == 256:
+                nums[1] = 0
+                nums[0] += 1
+                if nums[0] == 256:
+                    nums[0] = 0
+    return '.'.join([str(i) for i in nums])
 
 def enumerate_ips(start_ip, n):
     '''
@@ -126,15 +130,12 @@ def enumerate_ips(start_ip, n):
     >>> len(list(enumerate_ips('8.8.8.8', 100000)))
     100000
     '''
-    ips=[]
+    acc = []
     for i in range(n):
-        if start_ip=='255.255.255.255':
-            ips.append('0.0.0.0')
-        else:
-            new_ip=ipaddress.ip_address(start_ip)+i
-            new_ip=str(new_ip)
-            ips.append(new_ip)
-    return ips
+        acc.append(start_ip)
+        start_ip = increment_ip(start_ip)
+    return acc
+
 
 ########################################
 # FIXME 1:
@@ -169,15 +170,14 @@ dprk_ips = enumerate_ips('175.45.176.0', 1024)
 # you'll learn how to write this parallel code.
 ########################################
 dprk_ips_with_servers = []
-
+count=0
 for ip in dprk_ips:
-    print("ip=", ip)
-    if is_server_at_hostname(ip)==True:
-        print("connected")
+    count+=1
+    print('Scanning IP: ' + ip + ' ' + 'NUMBER:', count)
+    if is_server_at_hostname(ip):
         dprk_ips_with_servers.append(ip)
-    else:
-        print("failed")
-        continue 
+        
+        
 
 ########################################
 # Once you've completed the tasks above,
