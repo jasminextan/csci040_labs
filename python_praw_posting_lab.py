@@ -1,6 +1,6 @@
 import praw
 
-reddit = praw.Reddit('mybigbot1')
+reddit = praw.Reddit('bigjbot')
 
 import time
 import datetime
