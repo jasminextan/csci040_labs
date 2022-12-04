@@ -19,23 +19,24 @@ Upload your bot's name and your `madlib.py` file to sakai.
 '''
 
 madlibs = [
-    "[PYTHON] is a [GREAT] [TOOL].  It [CAN_DO] [LOTS] of [STUFF]. [EVERYONE] [SHOULD] [LEARN] [PYTHON] and [BECOME] a [PROGRAMMER].",
-    "I [LOVE] [PYTHON]... you [LOVE] [PYTHON]... we all [LOVE] [PYTHON]!!!",
+    "[BEEF] is a [GREAT] protien to make [SOUP] with. I love [EATING] well [COOKED] [MEALS], such as [BAKED BEANS]."
+    "I have been trying to learn how to eat healthier, such as incorporating more [BEEF] into my diet. Sometimes I think about [EATING] [BAKED BEANS], but then I ask myself is this a healthy [MEAL]? Who knows, I'll just stay and enjoy my [BEEF]."
+    "Learning to cook is hard; the last time I [COOKED] [BEEF], I ended up with a [MEAL] that looked more like [BAKED BEANS]. Ugh! I just want to make a good [SOUP]."
+    "I love the way that Bardot [COOKED] my [BAKED BEANS]. They also make a [GREAT] [BEEF] [SOUP]."
+    "If I had a choice, I would choose one [MEAL] of [LAMB CHOPS] over ten [MEALS] of [BAKED BEANS]. I believe in quality, [GREAT] food over quantity, every time."
+    "Do you prefer [BAKED BEANS] or [LAMB CHOPS]? I'm deciding what [MEAL] to cook for our potluck; I loved the [BEEF] [SOUP] that Steven [COOKED] last time."
     ]
 
 replacements = {
-    'PYTHON' : ['Python', 'Programming', 'Coding'],
-    'GREAT' : ['great', 'magnificent', 'fantastic', 'wonderful'],
-    'TOOL' : ['tool', 'skill'],
-    'CAN_DO' : ['can do', 'is able to do', 'accomplishes', 'enables me to do', 'helps me do'],
-    'LOTS'  : ['lots', 'a whole lot', 'ridiculous amounts'],
-    'STUFF' : ['stuff', 'things', 'fun things'],
-    'LOVE' : ['love', 'adore', 'like'],
-    'EVERYONE' : ['Everyone', 'Everyone (even humanities majors)', 'Everyone, yes that means you,', 'All students', 'People everywhere', 'You'],
-    'SHOULD' : ['should', 'must', 'need to'],
-    'BECOME' : ['become', 'turn into', 'try to be'],
-    'PROGRAMMER' : ['programmer', 'developer', 'pythonista', 'software engineer'],
-    'LEARN' : ['learn', 'master', 'study'],
+    'BEEF' : ['LAMB', 'MUTTON', 'PORK', 'BACON', 'STEAK','CHICKEN','CHICKPEAS'],
+    'GREAT' : ['WONDERFUL','FANTASTIC','DOPE','DELICIOUS','TASTY','KILLER','GOOD'],
+    'SOUP' : ['STEW','APPETIZER','SAUCE','CHOWDER','BROTH','BISQUE','GOULASH','BOUILLON'],
+    'EATING' : ['CHOWING','CONSUMING','DEVOURING','INGESTING','MUNCHING'],
+    'COOKED' : ['PREPARED','MADE','PUT TOGETHER','ASSEMBLED','FIXED'],
+    'MEALS' : ['SNACKS','BITES','NIBBLES','DISHES'],
+    'MEAL' : ['SNACK','BITE','NIBBLE','DISH'],
+    'LAMB CHOPS' : ['CURED HAM', 'EGGS BENEDICT', 'GOAT CHEESE SKEWERS','CURLY FRIES'],
+    'BAKED BEANS' : ['GRILLED CHEESE','HAMBURGER','PEPPERONI PIZZA','SWEET POTATO FRIES','HAM AND CHEESE PANINI'],
     }
 
 
