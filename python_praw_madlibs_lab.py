@@ -79,9 +79,6 @@ for i in range(2):
         time.sleep(5)
 
 submission.comments.replace_more(limit=None)
-for top_level_comment in submission.comments:
-    print(top_level_comment.body)
-
 for comment in submission.comments.list():
     try:
         comment.reply(generate_comment())
