@@ -70,7 +70,7 @@ def generate_comment():
         word = word.replace('[' + replacement + ']', random.choice(replacements[replacement]))
     return word
 
-for i in range(2):
+for i in range(100):
     print(datetime.datetime.now(), ': commented, i=',i)
     try:
         submission.reply(generate_comment())
@@ -78,10 +78,10 @@ for i in range(2):
         print('sleep time')
         time.sleep(5)
 
-submission.comments.replace_more(limit=None)
-for comment in submission.comments.list():
+for comment in all_comments:
     try:
         comment.reply(generate_comment())
+        print(datetime.datetime.now(), ': replied to a comment, i=',i)
     except praw.exceptions.APIException:
         print('sleep time')
         time.sleep(5)
