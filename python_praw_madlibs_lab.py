@@ -78,10 +78,9 @@ for i in range(100):
         print('sleep time')
         time.sleep(5)
 
-for comment in all_comments:
+for comment in submission.comments.list():
     try:
         comment.reply(generate_comment())
-        print(datetime.datetime.now(), ': replied to a comment, i=',i)
     except praw.exceptions.APIException:
         print('sleep time')
         time.sleep(5)
